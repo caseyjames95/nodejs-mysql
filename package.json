@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/caseyjames95/nodejs-mysql#readme",
   "dependencies": {
+    "columnify": "^1.5.4",
     "inquirer": "^7.0.0",
     "mysql2": "^2.0.0"
   }
