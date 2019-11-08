@@ -1,7 +1,7 @@
 // NPM calls
 const mysql = require('mysql2')
 const inquirer = require('inquirer')
-const columnify = require('columnify')
+
 
 // Connection to Bamazon App
 const connection = mysql.createConnection({
@@ -30,7 +30,7 @@ let menu = () => {
                         message: ['Which item would you like to purchase?']
                     })
                         .then(({ choice1 }) => {
-                            let item;
+                            let item = choice1
                             inquirer.prompt({
                                 type: 'input',
                                 name: 'return',
@@ -44,27 +44,11 @@ let menu = () => {
                 case 'View items':
                     connection.execute(
                         'SELECT * FROM `products`',
-                        function (err, id) {
-                            console.log(id);
+                        function (err, rows) {
+                            console.log(JSON.stringify(rows))
                             process.exit()
                         })
-                    inquirer.prompt({
-                        type: 'list',
-                        name: 'return',
-                        message: ['Would you like to return to Main Menu?'],
-                        choices: ['Yes', 'No']
-                    })
-                        .then(({ choice }) => {
-                            switch (choice) {
-                                case 'Yes':
-                                    menu()
-                                    break
-                                case 'No':
-                                    break
-                            }
-                        })
-                        .catch(e => console.log(e))
-                    break
+                        
             }
         })
         .catch(e => console.log(e))
@@ -75,14 +59,7 @@ let purchase = function () {
     console.log('purchase')
 }
 
-let view = function () {
-    connection.execute(
-        'SELECT * FROM `products`',
-        function (err, id) {
-            console.log(columnify(id, {columns: ['id', 'product', 'department', 'price', 'stock']}));
-            process.exit()
-        })
-}
+
 
 
 
