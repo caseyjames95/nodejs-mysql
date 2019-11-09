@@ -1,5 +1,5 @@
 # nodejs-mysql
 Welcome to Bamazon Menu
 ![Welcome picture](./images/welcome.png)
-![](image.png)
+![View](./images/view.png)
 ![](image.png)

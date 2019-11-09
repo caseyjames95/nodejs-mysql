@@ -44,8 +44,8 @@ let menu = () => {
                 case 'View items':
                     connection.execute(
                         'SELECT * FROM `products`',
-                        function (err, rows) {
-                            console.log(JSON.stringify(rows))
+                        function (err, results) {
+                            console.table(results, ['product', 'department', 'price', 'stock'])
                             process.exit()
                         })
                         
